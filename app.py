@@ -22,7 +22,6 @@ def cognitive_load_feedback(predicted_state):
         "Real Right": "Now, focus on your right hand. Your left hemisphere takes control, fine-tuning precision and coordination. Just as ERD patterns emerge, your brain reinforces its ability to operate in this strange environment. In space, even simple gestures help maintain dexterity and neural balance.👉✋",
         "Real Fists": "Engage both hands at once. Bilateral motor cortex activation kicks in as you clench and release your fists. Whether you’re handling delicate instruments or preparing for a high-intensity task, this coordination strengthens your ability to adapt. It’s also useful for rehabilitation—keeping your body and mind in sync.🤜🤛",
         "Real Feet": "Your feet may not be planted on solid ground, but they still play a crucial role. As you move them, your central motor cortex (near the Cz electrode) fires up. ERD patterns in alpha/beta waves emerge, keeping circulation steady and preventing stiffness. Flex, tap, and stretch—you’re keeping yourself mission-ready. 👞🏃‍♂",
-        "Stressed": "Your brain shifts into high alert, releasing cortisol. In space, controlled stress sharpens focus, but too much impairs decisions. Deep breaths and mindfulness help you stay sharp.🧠⚡"
     }
     return feedback_messages.get(predicted_state, "Cognitive state unclear. Please verify your input.")
 
@@ -138,20 +137,20 @@ def evaluate_model(model, test_loader, device):
 # Streamlit page config
 st.set_page_config(
     page_title="AI Agent in a Spaceship | Revolutionizing Space Health",
-    page_icon="QE.jpg",
+    page_icon="logo.png",
     layout="centered",
     initial_sidebar_state="expanded"
 )
 
 # Page Title and Logo
-st.image("QE.jpg", width=200)  # Adjust the width as needed
+st.image("logo.png", width=200)  # Adjust the width as needed
 st.markdown("<h2 style='text-align: center; color: #4CAF50;'>Hello, I am ArmonIA</h2>", unsafe_allow_html=True)
 
 def main():
     st.title("EEG Cognitive Load Prediction")
     
     # Set the CSV file path (update as needed)
-    csv_file = r"C:\Users\HP\Downloads\HackathonAI/Cleaned_EEG_Dataset1.csv"
+    csv_file = r"C:\Users\HP\Downloads\Hackathon\Hackathon\Cleaned_EEG_Dataset.csv"
     
     # Train the model if not already saved.
     if not os.path.exists("eeg_transformer_model.pth") or not os.path.exists("label_encoder.pkl"):
@@ -241,8 +240,7 @@ def main():
                 "Real Left": "🤚",
                 "Real Right": "✋",
                 "Real Fists": "✊",
-                "Real Feet": "🚶‍♂",
-                "Stressed": "😰"
+                "Real Feet": "🚶‍♂"
             }
             emoji = emoji_mapping.get(output_value, "")
             st.success(f"Predicted class for the new sample: {output_value} {emoji}")
@@ -266,5 +264,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-    
